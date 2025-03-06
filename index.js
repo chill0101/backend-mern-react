@@ -1,3 +1,4 @@
+const path = require('path');
 const express = require('express');
 require('dotenv').config();
 const cors = require('cors');
@@ -7,6 +8,9 @@ const { dbConnection } = require('./database/config');
 
 //* Crear el servidor de express
 const app = express();
+
+//* Habilitar CORS
+app.use(cors());
 
 //* Base de datos
 dbConnection();
@@ -20,8 +24,10 @@ app.use(express.json());
 //* Rutas
 app.use('/api/auth', require('./routes/auth'));
 app.use('/api/events', require('./routes/events'));
-//TODO: auth //Crear, login, renew
-//TOOD: CRUD: Eventos
+app.use('*', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public/index.html'));
+});
+
 
 //* Escuchar peticiones
 const startServer = (retryCount = 0) => {

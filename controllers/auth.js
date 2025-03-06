@@ -100,6 +100,8 @@ const revalidateToken = async(req, res = response) => {
     console.log('Se requiere el /renew')
     res.json({
         ok: true,
+        uid,
+        name,
         token
     })
 }

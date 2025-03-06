@@ -24,7 +24,7 @@ router.post(
     [//middlewares
         check('name', 'El nombre es obligatorio').not().isEmpty(),
         check('email', 'El email es obligatorio').isEmail(),
-        check('password', 'El password debe contener 6 caracteres').isLength({min: 6}),
+        check('password', 'El password debe contener 10 caracteres').isLength({min: 10}),
         validateFields
     ], 
     createUser
@@ -33,7 +33,7 @@ router.post(
 router.post('/',
     [
         check('email', 'El email es obligatorio').isEmail(),
-        check('password', 'El password debe contener 6 caracteres').isLength({min: 6}),
+        check('password', 'El password debe contener 10 caracteres').isLength({min: 10}),
         validateFields
     ],
     loginUser 
